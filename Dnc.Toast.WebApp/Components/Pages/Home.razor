@@ -1,0 +1,76 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="center-block">
+                <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                    <button class="btn btn-success" @onclick="ShowSuccess">Show success toast</button>
+                    <button class="btn btn-danger" @onclick="ShowError">Show error toast</button>
+                    <button class="btn btn-warning" @onclick="ShowWarning">Show warning toast</button>
+                    <button class="btn btn-info" @onclick="ShowInfo">Show info toast</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public DncWrapper DncWrapper { get; set; }
+
+    public void ShowSuccess()
+    {
+        // DncWrapper.ShowSuccessToast("Success Toast Message", null, TimeSpan.FromSeconds(3));
+        DncWrapper.ShowSuccessToast("Success Toast Message");
+    }
+    public void ShowError()
+    {
+        // DncWrapper.ShowErrorToast("This is Error Message", TimeSpan.FromSeconds(5));
+        DncWrapper.ShowErrorToast("Error Toast Message");
+    }
+    public void ShowWarning()
+    {
+        // DncWrapper.ShowWarningToast("This is Warning Message", TimeSpan.FromSeconds(5));
+        DncWrapper.ShowWarningToast("Warning Toast Message", "Custom title");
+    }
+    public void ShowInfo()
+    {
+        DncWrapper.ShowInfoToast("This will disappears after 3 sec", null, TimeSpan.FromSeconds(5));
+        // DncWrapper.ShowInfoToast("This is Info Toast Message");
+    }
+}
+
+<style>
+body {
+    margin: 1rem auto;
+    background: #eee;
+}
+
+.center-block {
+    display: block;
+    margin: 1rem auto;
+     text-align: center;
+}
+
+
+ .btn {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+ .btn-group-vertical {
+     padding: 1rem;
+     margin-top: 3rem;
+     border-radius: 0.375rem;
+     background: #fff;
+ }
+
+.btn-group-vertical > .btn {
+   border-radius: 0.375rem !important;
+}
+</style>
